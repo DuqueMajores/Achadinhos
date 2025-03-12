@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+}
+
+header{
+    background-color: #00214f;
+    color: white;
+    width: 100%;
+}
+
+header img{
+    width: 20px;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+section{
+    margin-top: 30px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1rf);
+    gap: 20px;
+}
+
+section a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Ajustar o layout dos cards quando o hover é acionado */
+section a:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do card */
+    z-index: 2; /* Garante que o card em hover fique acima dos outros */
+    text-decoration: none;
+    transition: transform 0.5s ease; /* Transição mais lenta para a expansão */
+}
+
+section .card {
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transição suave para transformação e opacidade */
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    text-align: center;
+    border: none;
+}
+
+section a:hover ~ .card {
+    transform: scale(0.9); /* Diminui os outros cards */
+    opacity: 0.8; /* Faz com que os outros cards fiquem mais suaves */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transição lenta para os outros cards */
+}
+
+section h3{
+    color: #8cabff;
+}
+
+/*Para telas maiores - 4 cards por linha */
+@media (min-width: 992px){
+    section{
+        grid-template-columns: (2, 1rf);
+    }
+}
+
+/* Para telas menores (>= 768px) - 3 cards por linha */
+@media (min-width: 768px) {
+    section {
+        grid-template-columns: repeat(4, 1fr); /* 3 cards por linha */
+    }
+}
+
+/* Para telas muito pequenas (<= 767px) - 1 card por linha */
+@media (max-width: 800px) {
+    section {
+        grid-template-columns: repeat(2, 1fr); /* 1 card por linha */
+        gap: 10px;
+        padding: 30px;
+    }
+
+    section h3{
+        white-space: nowrap; /* Evita quebra de linha */
+        font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+        width: fit-content; /* Ajusta a largura para caber no conteúdo */
+        height: auto; /* A altura será automaticamente ajustada conforme o texto */
+        margin: 0 auto; /* Remove margens extras */
+    }
+
+    .card{
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+    }
+}
