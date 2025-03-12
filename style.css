@@ -31,12 +31,8 @@ section a{
     color: black;
 }
 
-/* Ajustar o layout dos cards quando o hover é acionado */
 section a:hover {
-    transform: scale(1.1); /* Aumenta o tamanho do card */
-    z-index: 2; /* Garante que o card em hover fique acima dos outros */
     text-decoration: none;
-    transition: transform 0.5s ease; /* Transição mais lenta para a expansão */
 }
 
 section .card {
@@ -48,14 +44,16 @@ section .card {
     border: none;
 }
 
-section a:hover ~ .card {
-    transform: scale(0.9); /* Diminui os outros cards */
-    opacity: 0.8; /* Faz com que os outros cards fiquem mais suaves */
-    transition: transform 0.5s ease, opacity 0.5s ease; /* Transição lenta para os outros cards */
+section .card h3{
+    color: #8cabff;
 }
 
-section h3{
-    color: #8cabff;
+section .card p{
+    color: gray;
+}
+
+section .card h5{
+    color: rgb(56, 54, 54);
 }
 
 /*Para telas maiores - 4 cards por linha */
