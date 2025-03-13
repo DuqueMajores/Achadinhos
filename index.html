@@ -1,19 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Pagina-Inicial</title>
+    <!-- FireBase Script -->
+<script type="module">
+    // Importando as funções do Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Configuração do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBABCuo1XrgPd2k0w-PGcU-SkPQ7nWe4pU",
+        authDomain: "viciosemachadinhos.firebaseapp.com",
+        projectId: "viciosemachadinhos",
+        storageBucket: "viciosemachadinhos.firebasestorage.app",
+        messagingSenderId: "1001029017012",
+        appId: "1:1001029017012:web:746c46c0bb842f042266e1"
+    };
+
+    // Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Função para exibir os produtos
+    function exibirProdutos(produtos) {
+        document.getElementById("listaProdutos").innerHTML = "";
+        produtos.forEach(produto => {
+            document.getElementById("listaProdutos").innerHTML += `
+                <a href="${produto.link}" target="_blank">
+                    <div class="card">
+                        <img src="${produto.imagem}" alt="${produto.nome}" />
+                        <div class="card-body">
+                            <h5>${produto.nome}</h5>
+                            <p>${produto.descricao}</p>
+                            <h3>${produto.preco}</h3>
+                            <p><strong>Plataforma:</strong> ${produto.plataforma}</p>
+                        </div>
+                    </div>
+                </a>
+            `;
+        });
+    }
+
+    // Coletar produtos de todas as plataformas
+    const plataformas = ["shopee", "amazon", "magalu", "mercado-livre"];
+    let produtosTotais = [];
+
+    // Função para carregar os produtos de uma plataforma
+    async function carregarProdutos() {
+        for (let plataforma of plataformas) {
+            const produtosRef = collection(db, plataforma);
+            const snapshot = await getDocs(produtosRef);
+
+            snapshot.forEach(doc => {
+                let produto = doc.data();
+                produto.plataforma = plataforma;  // Adiciona a plataforma para identificar
+                produtosTotais.push(produto);  // Adiciona o produto à lista total
+            });
+        }
+
+        // Carregar todos os produtos e exibir
+        exibirProdutos(produtosTotais);
+    }
+
+    // Chama a função para carregar os produtos assim que a página for carregada
+    carregarProdutos();
+</script>
+
+    <!--Boostrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--Folha CSS-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!--Importações-->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
-    </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+    <!--JS do Cadastro de Produtos-->
+    <link rel="stylesheet" href="cadastro.js">
 
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-dark" style="background-color: #00214f;">
@@ -22,83 +91,89 @@
                     <a class="navbar-brand text-white" href="index.html">@viciosemachadinhos</a>
                     <img src="img/verificado.png" alt="verificado" class="ms-2" style="width: 20px; height: 20px;">
                 </div>
-    
-                <!-- Botão de colapso com ícone branco -->
+
                 <button class="navbar-toggler d-block" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
                     <span class="material-symbols-outlined text-white">
                         menu
                     </span>
                 </button>
-    
+
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="#">Contato</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="paginas/shopee.html">Shopee</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="paginas/amazon.html">Amazon</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="paginas/magalu.html">Magalu</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="paginas/mercado-livre.html">Mercado
+                                Livre</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!--Cards Cupons-->
-
-    <!--Cards-->
-    <section>
-        
-        <a href="https://s.shopee.com.br/5faZiW3j52" target="_blank">
-            <div class="card" >
-                <img src="img-cards/kit_da_belle.webp" class="card-img-top" alt="Imagem">
-                <div class="card-body">
-                    <h5 class="card-title">Kit DaBelle Hair Intense</h5>
-                    <p class="card-text">Cuidado capilar completo do couro cabeludo às pontas! </p>
-                    <h3>R$110,99</h3>
+    <!--Cards Afiliado-->
+    <section id="afiliados">
+        <!-- Card Links -->
+        <a href="paginas/shopee.html">
+            <div class="img-cards" id="CardShopee">
+                <img src="img-cards/shopee-bag.jpeg" alt="Shopee bag logo">
+                <div id="conjunto">
+                    <p><strong>Shopee</strong></p>
+                    <p style="color: gray;">(0 produtos)</p>
                 </div>
             </div>
         </a>
-
-        <a href="https://s.shopee.com.br/5faZiW3j52" target="_blank">
-            <div class="card" >
-                <img src="img-cards/kit_da_belle.webp" class="card-img-top" alt="Imagem">
-                <div class="card-body">
-                    <h5 class="card-title">Kit DaBelle Hair Intense</h5>
-                    <p class="card-text">Cuidado capilar completo do couro cabeludo às pontas! </p>
-                    <h3>R$110,99</h3>
+        <a href="paginas/magalu.html">
+            <div class="img-cards" id="CardShopee">
+                <img src="img-cards/magalu.png" alt="Magalu logo">
+                <div id="conjunto">
+                    <p><strong>Magalu</strong></p>
+                    <p style="color: gray;">(0 produtos)</p>
                 </div>
             </div>
         </a>
-
-        <a href="https://s.shopee.com.br/5faZiW3j52" target="_blank">
-            <div class="card" >
-                <img src="img-cards/kit_da_belle.webp" class="card-img-top" alt="Imagem">
-                <div class="card-body">
-                    <h5 class="card-title">Kit DaBelle Hair Intense</h5>
-                    <p class="card-text">Cuidado capilar completo do couro cabeludo às pontas! </p>
-                    <h3>R$110,99</h3>
+        <a href="paginas/mercado-livre.html">
+            <div class="img-cards" id="CardShopee">
+                <img src="img-cards/mercado-livre.png" alt="Mercado Livre logo">
+                <div id="conjunto">
+                    <p><strong>Mercado Livre</strong></p>
+                    <p style="color: gray;">(0 produtos)</p>
                 </div>
             </div>
         </a>
-
-        <a href="https://s.shopee.com.br/5faZiW3j52" target="_blank">
-            <div class="card" >
-                <img src="img-cards/kit_da_belle.webp" class="card-img-top" alt="Imagem">
-                <div class="card-body">
-                    <h5 class="card-title">Kit DaBelle Hair Intense</h5>
-                    <p class="card-text">Cuidado capilar completo do couro cabeludo às pontas! </p>
-                    <h3>R$110,99</h3>
+        <a href="paginas/amazon.html">
+            <div class="img-cards" id="CardShopee">
+                <img src="img-cards/amazon.jpeg" alt="Amazon logo">
+                <div id="conjunto">
+                    <p><strong>Amazon</strong></p>
+                    <p style="color: gray;">(0 produtos)</p>
                 </div>
             </div>
         </a>
     </section>
-    
-    
-    
+
+    <!-- Todos os produtos -->
+    <h1 id="title">Todos os Achadinhos</h1>
+    <div class="container" id="listaProdutos"></div>
+
     <!--Rodape-->
     <footer>
-        
+        <h6>Siga nas redes sociais:</h6>
+        <a href="https://www.instagram.com/viciosemachadinhos/" target="_blank"><img id="imgfooter1"
+                src="img/instagram.png" alt="instagram logo"></a>
+        <a href="https://www.threads.net/@viciosemachadinhos?xmt=AQGz-ZvJMHbqxnSY1feEOA6u9SLRpWA-_fBlMW-YpOjjFdw"
+            target="_blank"><img id="imgfooter1" src="img/threads.png" alt="Threads logo"></a>
+        <h6>Direitos autorais @ 2025 - @viciosemachadinhos</h6>
+        <div id="img2foot">
+            <img id="imgfooter2" src="img/SiteSeguro.webp" alt="site seguro logo">
+            <img id="imgfooter2" src="img/google-safe-browsing.webp" alt="google safe logo">
+        </div>
     </footer>
 
+    <!--Boostrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
 </body>
+
 </html>

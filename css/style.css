@@ -1,0 +1,405 @@
+body {
+    margin: 0;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header{
+    background-color: #00214f;
+    color: white;
+    width: 100%;
+}
+
+header img{
+    width: 20px;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+section{
+    margin-top: 30px;
+    margin-right: 5px;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(3, 1rf);
+    gap: 20px;
+    max-width: 100%;
+}
+
+section a{
+    text-decoration: none;
+    color: black;
+}
+
+section a:hover {
+    text-decoration: none;
+}
+
+section .card {
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transição suave para transformação e opacidade */
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    border: none;
+}
+
+section .card h3{
+    color: #8cabff;
+}
+
+section .card p{
+    color: gray;
+}
+
+section .card h5{
+    color: rgb(56, 54, 54);
+}
+
+/*Para telas maiores - 4 cards por linha */
+@media (min-width: 992px){
+    section{
+        grid-template-columns: (2, 1rf);
+    }
+}
+
+/* Para telas menores (>= 768px) - 3 cards por linha */
+@media (min-width: 768px) {
+    section {
+        grid-template-columns: repeat(4, 1fr); /* 3 cards por linha */
+    }
+}
+
+/* Para telas muito pequenas (<= 767px) - 1 card por linha */
+@media (max-width: 800px) {
+    section {
+        grid-template-columns: repeat(2, 1fr); /* 1 card por linha */
+        gap: 10px;
+        padding: 30px;
+    }
+
+    section h3{
+        white-space: nowrap; /* Evita quebra de linha */
+        font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+        width: fit-content; /* Ajusta a largura para caber no conteúdo */
+        height: auto; /* A altura será automaticamente ajustada conforme o texto */
+        margin: 0 auto; /* Remove margens extras */
+    }
+
+    .card{
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+    }
+}
+
+.img-cards img {
+    width: 40px; /* Reduzi um pouco mais */
+    height: 40px; /* Mantém proporção */
+    object-fit: contain; /* Garante que a imagem não fique cortada */
+}
+
+#CardShopee {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Reduzi o espaçamento entre os elementos internos */
+    width: 150px; /* Define um tamanho menor para os cards */
+    padding: 10px; /* Reduzi o padding para manter compacto */
+    box-shadow: 0px 1px 3px gray;
+    border-radius: 6px; /* Pequeno arredondamento */
+    background-color: white;
+    font-size: 12px; /* Diminui o tamanho da fonte para caber melhor */
+    
+}
+
+#afiliados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Mínimo espaçamento possível entre os cards */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+    #afiliados {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr); /* Mantém 2 cards por linha */
+        gap: 20px; /* Reduzi ainda mais o espaçamento no modo responsivo */
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+    }
+}
+
+#conjunto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Mínimo espaçamento entre os textos */
+}
+
+#conjunto p {
+    margin: 0;
+    font-size: 10px; /* Reduz tamanho do texto para manter legível no card menor */
+}
+
+footer{
+    text-align: center;
+    color: gray;
+    width: 300px;
+    margin: 0 auto;
+}
+
+footer #imgfooter1{
+    width: 50px;
+    margin-bottom: 30px;
+}
+footer #imgfooter2{
+    width: 100px;
+}
+
+footer #img2foot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+#produtoForm {
+    padding: 20px;
+    background-color: #00214f;
+    width: 90%;
+    max-width: 300px; /* Ajustei para um tamanho mais equilibrado */
+    color: white;
+    border-radius: 12px;
+    margin: 100px auto; /* Centraliza horizontalmente */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Centraliza o conteúdo dentro do formulário */
+    transition: 0.3s ease-in-out;
+    margin-top: 40px;
+}
+
+#produtoForm:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+
+
+#produtoForm label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+#produtoForm input,
+#produtoForm select {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #00D4FF;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #00214f;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+#produtoForm input:focus,
+#produtoForm select:focus {
+    border-color: #007BFF;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.5);
+    transform: scale(1.02);
+}
+
+#produtoForm select {
+    appearance: none; /* Remove a aparência padrão */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="%2300214f"><path d="M7 10l5 5 5-5z"></path></svg>'); 
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    padding-right: 35px;
+    cursor: pointer;
+}
+
+#produtoForm input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+
+#produtoForm input,
+#produtoForm select,
+#produtoForm button {
+    max-width: 150px; /* Ajuste conforme necessário */
+    width: 100%; /* Para melhor responsividade */
+    padding: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#produtoForm button {
+    background: linear-gradient(45deg, #007BFF, #00D4FF);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+#produtoForm button:hover {
+    background: linear-gradient(45deg, #0056b3, #00a2d4);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.5);
+}
+
+#produtoForm button:active {
+    transform: scale(0.98);
+    box-shadow: 0px 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+#title {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #ff5a00;
+    padding: 10px;
+    position: relative;
+    display: inline-block;
+    background-color: transparent;
+}
+
+#title {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    background: linear-gradient(90deg, #ff5a00, #ff9500, #ff5a00);
+    background-size: 200% 200%;
+    animation: gradientMove 3s infinite alternate;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(255, 90, 0, 0.7);
+    margin-top: 20px;
+}
+
+/* Animação de gradiente */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os cards */
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    width: 220px; /* Largura fixa do card */
+    background-color: white;
+    color: gray;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+    margin-bottom: 20px; /* Adicionando espaçamento inferior */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Remover o sublinhado do link ao passar o mouse */
+.card a,
+.card a:visited,
+.card a:hover,
+.card a:focus,
+.card a:active {
+    text-decoration: none !important;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card img:hover {
+    transform: scale(1.1);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.card button {
+    background: #fff;
+    color: #007BFF;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.card button:hover {
+    background: #00D4FF;
+    color: white;
+}
+
+/* 🔥 Responsividade: Máximo de 2 cards lado a lado antes do wrap */
+@media (max-width: 800px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 cards lado a lado */
+        gap: 20px;
+        width: 100%; /* Garante que ocupe toda a largura disponível */
+    }
+
+    .card {
+        width: 100%; /* Cards ocupando 100% do tamanho da grid */
+    }
+}
